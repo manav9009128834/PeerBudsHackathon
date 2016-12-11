@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <title>PeerBuds Hackathon | developed by Manav Shrivastava</title>
+    <style>
+
+    </style>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <script>
+         $(document).ready(function() {
+                $('.btn-success').click(function(){
+
+                    $.get("http://localhost:3000/allposts", function (data, status) {
+                        //alert("Data: " + data[0]._id + "\nStatus: " + status);
+                        $(".testimonial-section").html(data[0].Body);
+                        for(var i =0 ; i < data.length; i++){
+                            $(".result").append("<div class='row'>   <div class='col-sm-12'> " +
+                                    " <div id='tb-testimonial' class='testimonial testimonial-default'> " +
+                                    "  <div class='testimonial-section'>  " +
+                                    " <b>"+data[i].Title+"</b><hr>"+data[i].Body+"" +
+                                    "  </div>    " +
+                                    "    </div> " +
+                                    " </div> <div class='testimonial-desc'> " +
+                                    "     <img src='https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100' alt='' />   " +
+                                    "                          <div class='testimonial-writer'>           " +
+                                    "                  <div class='testimonial-writer-name'>"+data[i].Tags+"</div>         " +
+                                    "                    <div class='testimonial-writer-designation'>"+data[i].Tags+"</div>    " +
+                                    "                 <a href='#' class='testimonial-writer-company'></a>     " +
+                                    "                        </div>                   " +
+                                    "          </div><br/>");
+                        }
+
+                    });
+                });
+
+         });
+    </script>
+</head>
+<body>
+<h1>PeerBuds Hackathon</h1>
+<div class="container" style="padding-top:30px">
+    <h1 class="text-center"><a href="/" >All posts</a> | <a href="/chat" >chat</a></h1>
+    <h3 class="pull-right"><a href="/" >Previous </a> | <a href="/" > Next </a></h3>
+    <div class="container" style="margin-top: 5%;">
+        <div class="col-md-6 col-md-offset-3">
+
+            <!-- Search Form -->
+            <form role="form">
+
+                <!-- Search Field -->
+                <div class="row">
+                    <h1 class="text-center">Search By User Id</h1>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="search" placeholder="Search" required/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;">Search</span></button>
+                        </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <!-- End of Search Form -->
+        <div class="result"></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
